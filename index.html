@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -16,10 +17,17 @@
             font-family: "Montserrat", sans-serif;
         }
 
-
         :root {
             --color-primary: #03263a;
-            --color-secundary: orange;
+            --color-secondary: orange;
+            --background-color: #ffffff;
+            --text-color: #000000;
+            --gradient: linear-gradient(to right, #ff6b6b, #cc5de8, #5c7cfa);
+        }
+
+        body {
+            background-color: var(--background-color);
+            color: var(--text-color);
         }
 
         .container_main {
@@ -62,22 +70,15 @@
             font-size: 15px;
         }
 
-        h2 {
-            background-image: linear-gradient(to right, #ff6b6b, #cc5de8, #5c7cfa);
+        h2, h3, .subtitle {
+            background-image: var(--gradient);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
             display: inline-block;
-
         }
 
         h3 {
-
-            background-image: linear-gradient(to right, #ff6b6b, #cc5de8, #5c7cfa);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            display: inline-block;
             font-weight: 400;
             font-size: 14px;
         }
@@ -85,12 +86,6 @@
         .subtitle {
             font-size: 18px;
             font-weight: 700;
-
-            background-image: linear-gradient(to right, #ff6b6b, #cc5de8, #5c7cfa);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            display: inline-block;
         }
 
         .sub_subtitle {
@@ -159,7 +154,6 @@
             width: 100%;
             margin-top: 50px;
             font-size: 13px;
-
             display: flex;
             flex-direction: column;
         }
@@ -175,7 +169,6 @@
             padding: 18px;
             display: flex;
             flex-direction: column;
-            
         }
 
         .img-auto {
@@ -185,37 +178,52 @@
             margin-bottom: 20px;
         }
 
-
-
         .iconoPro {
             width: 50px;
         }
 
-        .iconoProJS{
+        .iconoProJS {
             filter: drop-shadow(0 2px 5px rgb(255, 191, 0));
         }
 
-        .iconoProHTML{
+        .iconoProHTML {
             filter: drop-shadow(0 2px 5px rgb(255, 85, 0));
         }
-            
-        .iconoProCSS{
+
+        .iconoProCSS {
             filter: drop-shadow(0 2px 5px rgb(0, 72, 255));
         }
-
 
         .lenguajeUti {
             display: flex;
             justify-content: space-around;
         }
-        
-        .flex-colum-card{
+
+        .flex-colum-card {
             display: flex;
+        }
+
+        #themeToggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 10px 20px;
+            background-color: var(--color-primary);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        #themeToggle:hover {
+            background-color: var(--color-secondary);
         }
     </style>
 </head>
 
 <body>
+    <button id="themeToggle">Cambiar Tema</button>
     <section class="container_main">
         <div class="container_contenido">
             <h3>Fronted Developer</h3>
@@ -407,9 +415,30 @@
                 </div>
             </div>
         </div>
-
+        
         
     </section>
+
+    <script>
+        const themeToggle = document.getElementById('themeToggle');
+        const root = document.documentElement;
+
+        themeToggle.addEventListener('click', () => {
+            if (root.style.getPropertyValue('--background-color') === '#1a1a1a') {
+                // Cambiar a tema claro
+                root.style.setProperty('--background-color', '#ffffff');
+                root.style.setProperty('--text-color', '#000000');
+                root.style.setProperty('--color-primary', '#03263a');
+                root.style.setProperty('--gradient', 'linear-gradient(to right, #ff6b6b, #cc5de8, #5c7cfa)');
+            } else {
+                // Cambiar a tema oscuro
+                root.style.setProperty('--background-color', '#1a1a1a');
+                root.style.setProperty('--text-color', '#ffffff');
+                root.style.setProperty('--color-primary', '#4a90e2');
+                root.style.setProperty('--gradient', 'linear-gradient(to right, #ff9a9e, #fad0c4, #ffecd2)');
+            }
+        });
+    </script>
 </body>
 
 </html>
